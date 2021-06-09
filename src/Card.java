@@ -1,4 +1,4 @@
-package blackJack;
+
 
 /*
  * カードの素材となるクラス

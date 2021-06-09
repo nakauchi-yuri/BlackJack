@@ -1,9 +1,11 @@
-package blackJack;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+/*
+ * TODO: カードを引いた際に合計値を表示する
+ */
 public class GameManager {
 
 	Deck deck = new Deck();
@@ -31,6 +33,7 @@ public class GameManager {
 			{
 				player.hit(deck);
 				judge("player",player.totalMyScore);
+				displayScore("player");
 			}
 			else
 			{

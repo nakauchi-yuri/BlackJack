@@ -1,4 +1,4 @@
-package blackJack;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ public class Player
 	public List<Card> myHands = new ArrayList<>();
 
 	//クラスの名前を取得、最初の10文字(BlackJack.)を削っている。
-	public String className = getClass().getName().substring(10);
+	public String className = getClass().getName();
 
 	//最初のドロー（2枚）
 	public void firstDraw(Deck deck)
@@ -32,9 +32,9 @@ public class Player
 			myHands.add(deck.card.get(deck.cardCount));
 			if(className.equals("Player"))
 			{
-				System.out.println("Playerの引いたカードは["+myHands.get(i).suit+","+myHands.get(i).number+"]");
+				System.out.println("Playerの引いたカードは["+myHands.get(myHands.size()-1).suit+","+myHands.get(myHands.size()-1).number+"]");
 			}
-			totalMyScore += faceCardProcess(myHands.get(i).number);
+			totalMyScore += faceCardProcess(myHands.get(myHands.size()-1).number);
 		}
 	}
 
