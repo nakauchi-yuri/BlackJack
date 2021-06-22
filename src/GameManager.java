@@ -8,20 +8,34 @@ import java.io.InputStreamReader;
  */
 public class GameManager {
 
+	// TODO:猪岡
+	//      Static化すれば、このdeckフィールドは不要
 	Deck deck = new Deck();
 	Player player = new Player();
 	Dealer dealer = new Dealer();
 
+	// TODO:猪岡
+	//      引数なしコンストラクタを定義して、その中でreadyForGame()メソッドを呼び出せば
+	//      mainメソッド側で呼び出さずに済むと思います。
+
+	// TODO:猪岡
+	//      スペルがおかしい:"readey"ForGame
 	public void readeyForGame()
 	{
 		deck.deckCreate();
 		player.draw(deck,2);
 		displayScore("player");
 		dealer.draw(deck,2);
+
+		// TODO:猪岡
+		//      announce()メソッドを使用しては？
 		System.out.println("Dealerの引いたカードは、["+dealer.myHands.get(1).suit+","+dealer.myHands.get(1).number+"]");
 		System.out.println("Dealerの合計は、["+dealer.myHands.get(1).number+"]");
 		System.out.println("もう1枚のカードは伏せてあります。");
 	}
+
+	// TODO:猪岡
+	//      メソッド名は、startGame()とか？
 
 	//ゲームの流れ
 	public void InGame()throws IOException
@@ -53,6 +67,9 @@ public class GameManager {
 		}
 	}
 
+	// TODO:猪岡
+	//      メソッド名は、readFromKeyboard()とか？
+
 	//キーボード入力をうながす
 	private String keybordCheck()throws IOException
 	{
@@ -65,6 +82,8 @@ public class GameManager {
 	private boolean yesNoCheck() throws IOException
 	{
 		String check = keybordCheck();
+		// TODO:猪岡
+		//      if else 文の改行の書き方が違和感。。。
 		if(check.equals("y")||check.equals("Y")) return true;
 		else return false;
 	}
@@ -74,6 +93,10 @@ public class GameManager {
 	{
 		System.out.println(word);
 	}
+
+	// TODO:猪岡
+	//      以下のメソッド定義にすることで簡略化できるはず。
+	//      private void judge(Player player) throws IOException
 
 	//勝ち負けの判定（プレイヤー）
 	private void judge(String name ,int score) throws IOException
@@ -121,6 +144,11 @@ public class GameManager {
 			announce("あなたの負けです");
 		}
 	}
+
+	// TODO:猪岡
+	//      以下のメソッド定義にすることで簡略化できるはず。
+	//      public void displayScore(Player player)
+	//      それとこのメソッドPrivateでは？
 
 	//現在の手札の合計値を表示する。
 	public void displayScore(String who)
