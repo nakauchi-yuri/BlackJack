@@ -10,45 +10,45 @@ public class Player
 	public int totalMyScore = 0;
 	public List<Card> myHands = new ArrayList<>();
 
-	// TODO:猪岡
-	//      これは「ディーラーかどうか」のBooleanフィールドを追加するだけで不要になると思います。
-
 	//クラスの名前を取得、最初の10文字(BlackJack.)を削っている。
 	public String className = getClass().getName();
 
-	//最初のドロー（2枚）
-	public void firstDraw(Deck deck)
-	{
-		draw(deck,2);
-	}
-
 	//ヒットの場合（1枚）
-	public void hit(Deck deck)
+	public void hit()
 	{
-		draw(deck,1);
+		draw(1);
 	}
 
 	// TODO:猪岡
 	//      DeckをStatic化することで以下のメソッド定義で済むはず。
 	//      public void draw(int drawCount)
+	//変更済み
 
 	//カードを引く（どのデッキから,何枚引くか）
-	public void draw(Deck deck,int drawCount)
+	public void draw(int drawCount)
 	{
 		for(int i = 0;i<drawCount;i++)
 		{
-			deck.cardCount -=1;
-			myHands.add(deck.card.get(deck.cardCount));
+
+			myHands.add(Deck.card.get(Deck.cardCount));
+			Deck.cardCount -= 1;
 			if(className.equals("Player"))
 			{
+				totalMyScore += faceCardProcess(myHands.get(myHands.size()-1).number);
+				System.out.println("Playerの引いたカードは["+myHands.get(myHands.size()-1).suit+","+myHands.get(myHands.size()-1).number+"]");
+			}else if(className.equals("Dealer"))
+			{
+				totalMyScore += faceCardProcess(myHands.get(i).number);
 				System.out.println("Playerの引いたカードは["+myHands.get(myHands.size()-1).suit+","+myHands.get(myHands.size()-1).number+"]");
 			}
-			totalMyScore += faceCardProcess(myHands.get(myHands.size()-1).number);
 		}
 	}
 
 	// TODO:猪岡
 	//      これはCardクラスのメソッドに持っていけば良い。(メソッド名はgetScore()等)
+	//
+	//中内：Cardクラスはあくまで1枚のカード(スートと数)として認識していたのですが、
+	//プログラム上だと実際の数字とは別に、スコアとしての数字を入れて置いておくといったイメージでいいですか？
 
 	//faceCard(絵札)を10として処理する
 	protected int faceCardProcess(int getCard)

@@ -10,7 +10,7 @@ public class GameManager {
 
 	// TODO:猪岡
 	//      Static化すれば、このdeckフィールドは不要
-	Deck deck = new Deck();
+	//変更済み　削除しました
 	Player player = new Player();
 	Dealer dealer = new Dealer();
 
@@ -20,12 +20,13 @@ public class GameManager {
 
 	// TODO:猪岡
 	//      スペルがおかしい:"readey"ForGame
-	public void readeyForGame()
+	//変更済み
+	public void readyForGame()
 	{
-		deck.deckCreate();
-		player.draw(deck,2);
+		Deck.deckCreate();
+		player.draw(2);
 		displayScore("player");
-		dealer.draw(deck,2);
+		dealer.draw(2);
 
 		// TODO:猪岡
 		//      announce()メソッドを使用しては？
@@ -45,7 +46,7 @@ public class GameManager {
 			announce("カードを引きますか？（Y/N）");
 			if(yesNoCheck())
 			{
-				player.hit(deck);
+				player.hit();
 				judge("player",player.totalMyScore);
 				displayScore("player");
 			}
@@ -57,7 +58,7 @@ public class GameManager {
 		}
 		while(dealer.totalMyScore<=16&&player.totalMyScore<20)
 		{
-			dealer.hit(deck);
+			dealer.hit();
 		}
 		judge("dealer",dealer.totalMyScore);
 

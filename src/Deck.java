@@ -18,14 +18,14 @@ public class Deck
 	static public List<Card> card = new ArrayList<>();
 
 	//次に引くカードの番号
-	public int cardCount = 0;
+	static public int cardCount = 0;
 
 	// TODO:猪岡
     //      デッキ作成というよりはデッキのリセット処理だと思います。
 	//変更済み
 
 	//デッキを作り直してシャッフルする
-	public void deckCreate()
+	static public void deckCreate()
 	{
 		generateCards();
 		Collections.shuffle(card);
@@ -39,10 +39,13 @@ public class Deck
 	// TODO:猪岡
     //      メソッド名は generateCards() かな？
     //      最初にcardリストをクリアする処理を追加する方が良いでしょう。
+	//変更済み
 
 	//カードを52枚作る
-	private void generateCards()
+	static private void generateCards()
 	{
+		//リストの初期化してから処理開始
+		card.clear();
 		for(int i = 1; i<=4;i++)
 		{
 			for(int j = 1;j<=13;j++)
@@ -62,7 +65,7 @@ public class Deck
 	//変更済み
 
 	//特定の数字に対してスートで返す
-	private String chooseSuit(int suitNum)
+	static private String chooseSuit(int suitNum)
 	{
 		switch(suitNum)
 		{
